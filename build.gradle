@@ -2,8 +2,11 @@ group 'ru.stqa.pft'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
-sourceCompatibility = 1.5
+mainClass = "MyFirstProgram"
+
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()

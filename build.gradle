@@ -3,8 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'application'
-
-mainClassName = "MyFirstProgram"
+mainClassName = "ru.stqa.pft.sandbox.MyFirstProgram"
 
 sourceCompatibility = 1.8
 
@@ -13,5 +12,5 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.testng:testng:6.11'
 }

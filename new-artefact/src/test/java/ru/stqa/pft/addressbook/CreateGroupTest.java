@@ -22,14 +22,14 @@ public class CreateGroupTest {
     public void setUp(){
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    @Test
-    public void testCreateGroup(){
         driver.get("http://localhost:1234/addressbook/");
         driver.findElement(By.name("user")).sendKeys("admin");
         driver.findElement(By.name("pass")).sendKeys("secret");
         driver.findElement(By.xpath("//input[@value='Login']")).click();
+    }
+
+    @Test
+    public void testCreateGroup(){
         driver.findElement(By.linkText("groups")).click();
         driver.findElement(By.name("new")).click();
         driver.findElement(By.name("group_name")).sendKeys("One test group");
@@ -41,10 +41,6 @@ public class CreateGroupTest {
 
     @Test
     public void testCreateNewContact() {
-        driver.get("http://localhost:1234/addressbook/");
-        driver.findElement(By.name("user")).sendKeys("admin");
-        driver.findElement(By.name("pass")).sendKeys("secret");
-        driver.findElement(By.xpath("//input[@value='Login']")).click();
         driver.findElement(By.linkText("add new")).click();
         driver.findElement(By.name("firstname")).sendKeys("Barry");
         driver.findElement(By.name("middlename")).sendKeys("G.");

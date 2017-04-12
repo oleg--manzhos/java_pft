@@ -76,11 +76,11 @@ public class TestBase {
         driver.findElement(By.linkText("add new")).click();
     }
 
-    public void selectGroup(){
+    protected void selectGroup(){
         driver.findElement(By.name("selected[]")).click();
     }
 
-    public void deleteGroup(){
+    protected void deleteGroup(){
         driver.findElement(By.name("delete")).click();
     }
 }

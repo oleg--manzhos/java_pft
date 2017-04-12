@@ -33,10 +33,18 @@ public class CreateGroupTest {
     @Test
     public void testCreateGroup(){
         gotoGroupPage();
-        initGroupCreation();
+        initNewGroupCreation();
         fillGroupForm(new GroupData("One test group", "Group header 1", "Group footer 1"));
         submitGroupCreation();
         returnToGroupPage();
+    }
+
+    @Test
+    public void testCreateNewContact() {
+        gotoContactCreationPage();
+        fillContactCreationForm(new ContactDataGroup("Barry", "G.", "Allen", "Flash"));
+        submitContactCreationPage();
+        returnToHomePage();
     }
 
     private void submitGroupCreation() {
@@ -49,7 +57,7 @@ public class CreateGroupTest {
         driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
     }
 
-    private void initGroupCreation() {
+    private void initNewGroupCreation() {
         driver.findElement(By.name("new")).click();
     }
 
@@ -61,26 +69,22 @@ public class CreateGroupTest {
         driver.findElement(By.linkText("groups")).click();
     }
 
-    @Test
-    public void testCreateNewContact() {
-        initContactCreation();
-        fillContactCreation(new ContactDataGroup("Barry", "G.", "Allen", "Flash"));
-        returnToHomePage();
-    }
-
     private void returnToHomePage() {
         driver.findElement(By.linkText("home page")).click();
     }
 
-    private void fillContactCreation(ContactDataGroup contactDataGroup) {
+    private void fillContactCreationForm(ContactDataGroup contactDataGroup) {
         driver.findElement(By.name("firstname")).sendKeys(contactDataGroup.getcName());
         driver.findElement(By.name("middlename")).sendKeys(contactDataGroup.getcMiddleName());
         driver.findElement(By.name("lastname")).sendKeys(contactDataGroup.getcLastName());
         driver.findElement(By.name("nickname")).sendKeys(contactDataGroup.getcNickName());
+    }
+
+    private void submitContactCreationPage(){
         driver.findElement(By.xpath("//input[@value='Enter']")).click();
     }
 
-    private void initContactCreation() {
+    private void gotoContactCreationPage() {
         driver.findElement(By.linkText("add new")).click();
     }
 

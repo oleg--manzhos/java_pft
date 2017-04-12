@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactDataGroup;
@@ -17,6 +16,7 @@ public class ApplicationManager {
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
     private SessionHelper sessionHelper;
+    private ContactHelper contactHelper;
 
     public void init() {
         driver = new FirefoxDriver();
@@ -25,6 +25,7 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(driver);
         navigationHelper = new NavigationHelper(driver);
         sessionHelper = new SessionHelper(driver);
+        contactHelper = new ContactHelper(driver);
         sessionHelper.login("admin", "secret");
     }
 
@@ -35,34 +36,23 @@ public class ApplicationManager {
     }
 
     public void returnToHomePage() {
-        driver.findElement(By.linkText("home page")).click();
+        navigationHelper.returnToHomePage();
     }
 
-    public void fillContactCreationForm(ContactDataGroup contactDataGroup) {
-        driver.findElement(By.name("firstname")).sendKeys(contactDataGroup.getcName());
-        driver.findElement(By.name("middlename")).sendKeys(contactDataGroup.getcMiddleName());
-        driver.findElement(By.name("lastname")).sendKeys(contactDataGroup.getcLastName());
-        driver.findElement(By.name("nickname")).sendKeys(contactDataGroup.getcNickName());
+    public void fillContactCreationForm(ContactDataGroup contactDataGroup){
+        contactHelper.fillContactCreationForm(contactDataGroup);
     }
 
     public void submitContactCreationPage(){
-        driver.findElement(By.xpath("//input[@value='Enter']")).click();
-    }
-
-    public void gotoContactCreationPage() {
-        driver.findElement(By.linkText("add new")).click();
+        contactHelper.submitContactCreationPage();
     }
 
     public void selectGroup(){
-       driver.findElement(By.name("selected[]")).click();
+       groupHelper.selectGroup();
     }
 
     public void deleteGroup(){
-      driver.findElement(By.name("delete")).click();
-    }
-
-    public GroupHelper getGroupHelper() {
-        return groupHelper;
+      groupHelper.deleteGroup();
     }
 
     public void submitGroupCreation() {
@@ -78,14 +68,14 @@ public class ApplicationManager {
     }
 
     public void returnToGroupPage() {
-        groupHelper.returnToGroupPage();
-    }
-
-    public NavigationHelper getNavigationHelper() {
-        return navigationHelper;
+        navigationHelper.returnToGroupPage();
     }
 
     public void gotoGroupPage() {
         navigationHelper.gotoGroupPage();
+    }
+
+    public void gotoContactCreationPage(){
+        navigationHelper.gotoContactCreationPage();
     }
 }

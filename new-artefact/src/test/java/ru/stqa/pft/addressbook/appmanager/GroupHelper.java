@@ -27,7 +27,11 @@ public class GroupHelper extends HelperBase{
         click(By.name("new"));
     }
 
-    public void returnToGroupPage() {
-        click(By.linkText("group page"));
+    public void deleteGroup(){
+        click(By.name("delete"));
+    }
+
+    public void selectGroup(){
+        click(By.name("selected[]"));
     }
 }

@@ -1,6 +1,5 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 /**
@@ -10,10 +9,10 @@ public class DeleteGroupTest extends TestBase {
 
     @Test
     public void testCroupDeletion(){
-        gotoGroupPage();
-        selectGroup();
-        deleteGroup();
-        returnToGroupPage();
+        app.gotoGroupPage();
+        app.selectGroup();
+        app.deleteGroup();
+        app.returnToGroupPage();
 
     }
 

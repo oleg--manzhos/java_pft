@@ -47,6 +47,23 @@ public class ApplicationManager {
         contactHelper.submitContactCreationPage();
     }
 
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
+    }
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
+    }
+
+    public ContactHelper getContactHelper() {
+        return contactHelper;
+    }
+
+    public SessionHelper getSessionHelper() {
+        return sessionHelper;
+    }
+
+
     public void selectGroup(){
        groupHelper.selectGroup();
     }

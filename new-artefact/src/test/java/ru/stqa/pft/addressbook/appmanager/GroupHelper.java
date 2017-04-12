@@ -13,7 +13,7 @@ public class GroupHelper extends HelperBase{
         super(driver);
     }
 
-    protected void submitGroupCreation() {
+    public void submitGroupCreation() {
         click(By.name("submit"));
     }
 

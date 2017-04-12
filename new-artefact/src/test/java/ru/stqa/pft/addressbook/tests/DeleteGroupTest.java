@@ -8,11 +8,11 @@ import org.testng.annotations.Test;
 public class DeleteGroupTest extends TestBase {
 
     @Test
-    public void testCroupDeletion(){
-        app.gotoGroupPage();
-        app.selectGroup();
-        app.deleteGroup();
-        app.returnToGroupPage();
+    public void testGroupDeletion(){
+        app.getNavigationHelper().gotoGroupPage();
+        app.getGroupHelper().selectGroup();
+        app.getGroupHelper().deleteGroup();
+        app.getNavigationHelper().returnToGroupPage();
 
     }
 

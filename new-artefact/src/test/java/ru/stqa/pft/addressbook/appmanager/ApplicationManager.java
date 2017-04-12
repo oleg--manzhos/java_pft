@@ -11,49 +11,27 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by omanzhos on 4/12/2017.
  */
-public class ApplicationManager{
+public class ApplicationManager {
 
     WebDriver driver;
+    private NavigationHelper navigationHelper;
+    private GroupHelper groupHelper;
+    private SessionHelper sessionHelper;
 
     public void init() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://localhost:1234/addressbook/");
-        login("admin", "secret");
+        groupHelper = new GroupHelper(driver);
+        navigationHelper = new NavigationHelper(driver);
+        sessionHelper = new SessionHelper(driver);
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
         if (driver != null){
             driver.quit();
         }
-    }
-
-    private void login(String username, String password) {
-        driver.findElement(By.name("user")).sendKeys(username);
-        driver.findElement(By.name("pass")).sendKeys(password);
-        driver.findElement(By.xpath("//input[@value='Login']")).click();
-    }
-
-    protected void submitGroupCreation() {
-        driver.findElement(By.name("submit")).click();
-    }
-
-    public void fillGroupForm(GroupData groupData) {
-        driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
-        driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-        driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-    }
-
-    public void initNewGroupCreation() {
-        driver.findElement(By.name("new")).click();
-    }
-
-    public void returnToGroupPage() {
-        driver.findElement(By.linkText("group page")).click();
-    }
-
-    public void gotoGroupPage() {
-        driver.findElement(By.linkText("groups")).click();
     }
 
     public void returnToHomePage() {
@@ -76,10 +54,38 @@ public class ApplicationManager{
     }
 
     public void selectGroup(){
-        driver.findElement(By.name("selected[]")).click();
+       driver.findElement(By.name("selected[]")).click();
     }
 
     public void deleteGroup(){
-        driver.findElement(By.name("delete")).click();
+      driver.findElement(By.name("delete")).click();
+    }
+
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
+    }
+
+    public void submitGroupCreation() {
+        groupHelper.submitGroupCreation();
+    }
+
+    public void fillGroupForm(GroupData groupData) {
+        groupHelper.fillGroupForm(groupData);
+    }
+
+    public void initNewGroupCreation() {
+        groupHelper.initNewGroupCreation();
+    }
+
+    public void returnToGroupPage() {
+        groupHelper.returnToGroupPage();
+    }
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
+    }
+
+    public void gotoGroupPage() {
+        navigationHelper.gotoGroupPage();
     }
 }

@@ -21,35 +21,67 @@ public class CreateGroupTest {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("http://localhost:1234/addressbook/");
-        login();
+        login("admin", "secret");
     }
 
-    private void login() {
-        driver.findElement(By.name("user")).sendKeys("admin");
-        driver.findElement(By.name("pass")).sendKeys("secret");
+    private void login(String username, String password) {
+        driver.findElement(By.name("user")).sendKeys(username);
+        driver.findElement(By.name("pass")).sendKeys(password);
         driver.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
     @Test
     public void testCreateGroup(){
-        driver.findElement(By.linkText("groups")).click();
-        driver.findElement(By.name("new")).click();
-        driver.findElement(By.name("group_name")).sendKeys("One test group");
-        driver.findElement(By.name("group_header")).sendKeys("Group header 1");
-        driver.findElement(By.name("group_footer")).sendKeys("Group footer 1");
+        gotoGroupPage();
+        initGroupCreation();
+        fillGroupForm(new GroupData("One test group", "Group header 1", "Group footer 1"));
+        submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    private void submitGroupCreation() {
         driver.findElement(By.name("submit")).click();
+    }
+
+    private void fillGroupForm(GroupData groupData) {
+        driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
+        driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+        driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    }
+
+    private void initGroupCreation() {
+        driver.findElement(By.name("new")).click();
+    }
+
+    private void returnToGroupPage() {
         driver.findElement(By.linkText("group page")).click();
+    }
+
+    private void gotoGroupPage() {
+        driver.findElement(By.linkText("groups")).click();
     }
 
     @Test
     public void testCreateNewContact() {
-        driver.findElement(By.linkText("add new")).click();
-        driver.findElement(By.name("firstname")).sendKeys("Barry");
-        driver.findElement(By.name("middlename")).sendKeys("G.");
-        driver.findElement(By.name("lastname")).sendKeys("Allen");
-        driver.findElement(By.name("nickname")).sendKeys("Flash");
-        driver.findElement(By.xpath("//input[@value='Enter']")).click();
+        initContactCreation();
+        fillContactCreation(new ContactDataGroup("Barry", "G.", "Allen", "Flash"));
+        returnToHomePage();
+    }
+
+    private void returnToHomePage() {
         driver.findElement(By.linkText("home page")).click();
+    }
+
+    private void fillContactCreation(ContactDataGroup contactDataGroup) {
+        driver.findElement(By.name("firstname")).sendKeys(contactDataGroup.getcName());
+        driver.findElement(By.name("middlename")).sendKeys(contactDataGroup.getcMiddleName());
+        driver.findElement(By.name("lastname")).sendKeys(contactDataGroup.getcLastName());
+        driver.findElement(By.name("nickname")).sendKeys(contactDataGroup.getcNickName());
+        driver.findElement(By.xpath("//input[@value='Enter']")).click();
+    }
+
+    private void initContactCreation() {
+        driver.findElement(By.linkText("add new")).click();
     }
 
     @AfterMethod

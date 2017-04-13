@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactDataGroup;
 public class ContactModificationTest extends TestBase {
 
     @Test
-    public void testContactNmodification(){
+    public void testContactModification(){
         app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactCreationForm(new ContactDataGroup("Lennox", "L.", "Lewis", "Beater"));
         app.getContactHelper().submitContactModificationForm();

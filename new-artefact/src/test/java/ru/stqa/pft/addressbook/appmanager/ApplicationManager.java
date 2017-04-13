@@ -35,18 +35,6 @@ public class ApplicationManager {
         }
     }
 
-    public void returnToHomePage() {
-        navigationHelper.returnToHomePage();
-    }
-
-    public void fillContactCreationForm(ContactDataGroup contactDataGroup){
-        contactHelper.fillContactCreationForm(contactDataGroup);
-    }
-
-    public void submitContactCreationPage(){
-        contactHelper.submitContactCreationPage();
-    }
-
     public GroupHelper getGroupHelper() {
         return groupHelper;
     }
@@ -63,36 +51,4 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
-
-    public void selectGroup(){
-       groupHelper.selectGroup();
-    }
-
-    public void deleteGroup(){
-      groupHelper.deleteGroup();
-    }
-
-    public void submitGroupCreation() {
-        groupHelper.submitGroupCreation();
-    }
-
-    public void fillGroupForm(GroupData groupData) {
-        groupHelper.fillGroupForm(groupData);
-    }
-
-    public void initNewGroupCreation() {
-        groupHelper.initNewGroupCreation();
-    }
-
-    public void returnToGroupPage() {
-        navigationHelper.returnToGroupPage();
-    }
-
-    public void gotoGroupPage() {
-        navigationHelper.gotoGroupPage();
-    }
-
-    public void gotoContactCreationPage(){
-        navigationHelper.gotoContactCreationPage();
-    }
 }

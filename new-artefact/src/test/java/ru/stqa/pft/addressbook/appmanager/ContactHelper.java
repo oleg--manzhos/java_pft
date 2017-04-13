@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.ContactDataGroup;
  */
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper (WebDriver driver){
+    ContactHelper(WebDriver driver){
         super(driver);
     }
 

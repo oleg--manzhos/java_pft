@@ -9,7 +9,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
  */
 public class GroupHelper extends HelperBase{
 
-    public GroupHelper(WebDriver driver) {
+    GroupHelper(WebDriver driver) {
         super(driver);
     }
 
@@ -31,7 +31,17 @@ public class GroupHelper extends HelperBase{
         click(By.name("delete"));
     }
 
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
+
     public void selectGroup(){
         click(By.name("selected[]"));
     }
+
+    public void initGroupModification(){
+        click(By.name("edit"));
+    }
+
+
 }

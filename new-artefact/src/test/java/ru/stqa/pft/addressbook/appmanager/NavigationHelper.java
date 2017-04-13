@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class NavigationHelper extends HelperBase{
 
-    public NavigationHelper(WebDriver driver){
+    NavigationHelper(WebDriver driver){
         super(driver);
    }
 

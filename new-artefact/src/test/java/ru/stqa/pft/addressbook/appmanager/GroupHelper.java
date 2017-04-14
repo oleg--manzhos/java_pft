@@ -35,12 +35,27 @@ public class GroupHelper extends HelperBase{
         click(By.name("update"));
     }
 
+    public void returnToGroupPage() {
+        click(By.linkText("group page"));
+    }
+
     public void selectGroup(){
         click(By.name("selected[]"));
     }
 
+    public boolean isThereAGroup() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
     public void initGroupModification(){
         click(By.name("edit"));
+    }
+
+    public void createGroup(GroupData data) {
+        initNewGroupCreation();
+        fillGroupForm(data);
+        submitGroupCreation();
+        returnToGroupPage();
     }
 
 

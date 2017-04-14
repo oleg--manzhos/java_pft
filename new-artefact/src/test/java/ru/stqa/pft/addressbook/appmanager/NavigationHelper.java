@@ -30,8 +30,4 @@ public class NavigationHelper extends HelperBase{
         }
         click(By.linkText("add new"));
     }
-
-    public void returnToHomePage() {
-        click(By.linkText("home page"));
-    }
 }

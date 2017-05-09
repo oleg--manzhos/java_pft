@@ -9,16 +9,16 @@ import java.util.List;
 /**
  * Created by omanzhos on 4/12/2017.
  */
-public class DeleteGroupTest extends TestBase {
+public class GroupDeletionTest extends TestBase {
 
     @Test
-    public void testGroupDeletion(){
+    public void testGroupDeletion() {
         app.getNavigationHelper().gotoGroupPage();
-        if (!app.getGroupHelper().isThereAGroup()){
+        if (!app.getGroupHelper().isThereAGroup()) {
             app.getGroupHelper().createGroup(new GroupData("test1", "test2", "test3"));
         }
         List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() -1);
+        app.getGroupHelper().selectGroup(before.size() - 1);
         app.getGroupHelper().deleteGroup();
         app.getGroupHelper().returnToGroupPage();
         List<GroupData> after = app.getGroupHelper().getGroupList();

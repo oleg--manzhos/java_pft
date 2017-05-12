@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactDataGroup;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +43,7 @@ public class ContactHelper extends HelperBase {
     public void createContact(ContactDataGroup data) {
         fillContactCreationForm(data);
         submitContactCreationPage();
-        returnToHomePage();
+        goToHomePage();
     }
 
     public void deleteSelectedContact() {
@@ -55,8 +54,8 @@ public class ContactHelper extends HelperBase {
         acceptAlert();
     }
 
-    public void returnToHomePage() {
-        click(By.linkText("home page"));
+    public void goToHomePage() {
+        click(By.linkText("home"));
     }
 
     public boolean isThereAContact() {
@@ -67,16 +66,16 @@ public class ContactHelper extends HelperBase {
         driver.findElements(By.name("selected[]")).get(index).click();
     }
 
-    public List<GroupData> getContactList() {
-        List<GroupData> groups = new ArrayList<GroupData>();
-        List<WebElement> elements = driver.findElements(By.cssSelector("span.group"));
+    public List<ContactDataGroup> getContactList() {
+        List<ContactDataGroup> contacts = new ArrayList<>();
+        List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']/td[2]"));
         for (WebElement element:elements){
             String name = element.getText();
-            int id = Integer.parseInt(driver.findElement(By.tagName("input")).getAttribute("value"));
-            GroupData group = new GroupData(id, name, null,null);
-            groups.add(group);
+            int id = Integer.parseInt(driver.findElement(By.cssSelector("input[type=checkbox][value]")).getAttribute("value"));
+            ContactDataGroup contact = new ContactDataGroup(id, "C1", null,null, null);
+            contacts.add(contact);
         }
-        return groups;
+        return contacts;
     }
 }
 

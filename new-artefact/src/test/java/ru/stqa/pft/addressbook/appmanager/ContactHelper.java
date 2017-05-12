@@ -40,10 +40,10 @@ public class ContactHelper extends HelperBase {
         click(By.name("selected[]"));
     }
 
-    public void createContact(ContactDataGroup data) {
+    public void create(ContactDataGroup data) {
         fillContactCreationForm(data);
         submitContactCreationPage();
-        goToHomePage();
+        homePage();
     }
 
     public void deleteSelectedContact() {
@@ -54,7 +54,7 @@ public class ContactHelper extends HelperBase {
         acceptAlert();
     }
 
-    public void goToHomePage() {
+    public void homePage() {
         click(By.linkText("home"));
     }
 

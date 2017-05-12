@@ -31,7 +31,7 @@ public class GroupHelper extends HelperBase{
         click(By.name("new"));
     }
 
-    public void deleteGroup(){
+    public void delete(){
         click(By.name("delete"));
     }
 
@@ -55,14 +55,14 @@ public class GroupHelper extends HelperBase{
         click(By.name("edit"));
     }
 
-    public void createGroup(GroupData data) {
+    public void create(GroupData data) {
         initNewGroupCreation();
         fillGroupForm(data);
         submitGroupCreation();
         returnToGroupPage();
     }
 
-    public void modifyGroup(int index, GroupData group) {
+    public void modify(int index, GroupData group) {
         selectGroup(index);
         initGroupModification();
         fillGroupForm(group);
@@ -85,5 +85,4 @@ public class GroupHelper extends HelperBase{
         }
         return groups;
     }
-
 }

@@ -17,22 +17,22 @@ public class ContactDeletionTest extends TestBase {
 
     @BeforeMethod
     public void setPreconditions(){
-        app.getContactHelper().goToHomePage();
-        if (!app.getContactHelper().isThereAContact()){
+        app.contact().homePage();
+        if (!app.contact().isThereAContact()){
 
-            app.getContactHelper().createContact(contact);
+            app.contact().create(contact);
         }
     }
 
     @Test
     public void testContactDeletion(){
 
-        List<ContactDataGroup> before = app.getContactHelper().getContactList();
-        app.getContactHelper().contactSelection();
-        app.getContactHelper().deleteSelectedContact();
-        app.getContactHelper().applyContactDeletion();
-        app.getContactHelper().goToHomePage();
-        List<ContactDataGroup> after = app.getContactHelper().getContactList();
+        List<ContactDataGroup> before = app.contact().getContactList();
+        app.contact().contactSelection();
+        app.contact().deleteSelectedContact();
+        app.contact().applyContactDeletion();
+        app.contact().homePage();
+        List<ContactDataGroup> after = app.contact().getContactList();
         Assert.assertEquals(after.size(), before.size() - 1);
 
         contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());

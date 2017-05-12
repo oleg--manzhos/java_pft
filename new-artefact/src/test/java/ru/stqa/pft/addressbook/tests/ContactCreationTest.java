@@ -15,11 +15,11 @@ public class ContactCreationTest extends TestBase {
     @Test
     public void testCreateNewContact() {
 
-        List<ContactDataGroup> before = app.getContactHelper().getContactList();
+        List<ContactDataGroup> before = app.contact().getContactList();
         app.goTo().contactCreationPage();
         ContactDataGroup contact = new ContactDataGroup("C1", "C2", "C3", "C++");
-        app.getContactHelper().createContact(contact);
-        List<ContactDataGroup> after = app.getContactHelper().getContactList();
+        app.contact().create(contact);
+        List<ContactDataGroup> after = app.contact().getContactList();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());

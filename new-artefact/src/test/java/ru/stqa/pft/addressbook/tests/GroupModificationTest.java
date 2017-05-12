@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ public class GroupModificationTest extends TestBase{
 
     @BeforeMethod
     public void groupPresencePrecondition(){
-        app.getNavigationHelper().gotoGroupPage();
+        app.goTo().groupPage();
         if (! app.getGroupHelper().isThereAGroup()){
             app.getGroupHelper().createGroup(new GroupData("New test", "New Group", "New footer"));
         }

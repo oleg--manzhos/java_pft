@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDataGroup;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
@@ -16,7 +15,7 @@ public class ContactModificationTest extends TestBase {
 
     @BeforeMethod
     public void setPreconditions(){
-        app.getNavigationHelper().gotoGroupPage();
+        app.goTo().groupPage();
         if (!app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact(new ContactDataGroup("#$%%^@#", "#$%$%", "@DC$%", "e23$$#"));
         }

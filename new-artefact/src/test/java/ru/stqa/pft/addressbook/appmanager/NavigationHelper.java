@@ -12,7 +12,7 @@ public class NavigationHelper extends HelperBase{
         super(driver);
    }
 
-    public void gotoGroupPage() {
+    public void groupPage() {
         if (isElementPresent(By.tagName("h1"))
             && driver.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresent(By.name("new"))) {
@@ -22,7 +22,7 @@ public class NavigationHelper extends HelperBase{
     }
 
 
-    public void gotoContactCreationPage() {
+    public void contactCreationPage() {
         if (isElementPresent(By.tagName("h1"))
                 && driver.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
                 && isElementPresent(By.name("submit"))) {

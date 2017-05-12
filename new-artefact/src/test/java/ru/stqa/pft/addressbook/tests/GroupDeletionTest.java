@@ -15,9 +15,10 @@ public class GroupDeletionTest extends TestBase {
 
     @BeforeMethod
     public void groupPresencePrecondition(){
+        GroupData group = new GroupData().withName("New test").withHeader("New Group").withFooter("New footer");
         app.goTo().groupPage();
         if (! app.group().isThereAGroup()){
-            app.group().create(new GroupData("New test", "New Group", "New footer"));
+            app.group().create(group);
         }
     }
 
@@ -25,8 +26,8 @@ public class GroupDeletionTest extends TestBase {
     public void testGroupDeletion() {
         List<GroupData> before = app.group().getGroupList();
         app.group().selectGroup(before.size() - 1);
-        app.group().delete();
-        app.group().returnToGroupPage();
+        app.group().deleteGroup();
+        app.group().groupPage();
         List<GroupData> after = app.group().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1);
 

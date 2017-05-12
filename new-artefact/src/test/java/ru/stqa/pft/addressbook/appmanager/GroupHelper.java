@@ -31,7 +31,7 @@ public class GroupHelper extends HelperBase{
         click(By.name("new"));
     }
 
-    public void delete(){
+    public void deleteGroup(){
         click(By.name("delete"));
     }
 
@@ -39,7 +39,7 @@ public class GroupHelper extends HelperBase{
         click(By.name("update"));
     }
 
-    public void returnToGroupPage() {
+    public void groupPage() {
         click(By.linkText("group page"));
     }
 
@@ -59,7 +59,7 @@ public class GroupHelper extends HelperBase{
         initNewGroupCreation();
         fillGroupForm(data);
         submitGroupCreation();
-        returnToGroupPage();
+        groupPage();
     }
 
     public void modify(int index, GroupData group) {
@@ -67,7 +67,7 @@ public class GroupHelper extends HelperBase{
         initGroupModification();
         fillGroupForm(group);
         submitGroupModification();
-        returnToGroupPage();
+        groupPage();
     }
 
     public int getGroupCount() {
@@ -80,8 +80,7 @@ public class GroupHelper extends HelperBase{
         for (WebElement element:elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            GroupData group = new GroupData(id, name, null,null);
-            groups.add(group);
+            groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
     }

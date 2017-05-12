@@ -17,7 +17,7 @@ public class GroupModificationTest extends TestBase{
     public void groupPresencePrecondition(){
         app.goTo().groupPage();
         if (! app.group().isThereAGroup()){
-            app.group().create(new GroupData("New test", "New Group", "New footer"));
+            app.group().create(new GroupData().withHeader("New test").withHeader("New Group").withFooter("New footer"));
         }
     }
 
@@ -26,7 +26,7 @@ public class GroupModificationTest extends TestBase{
 
         List<GroupData> before =  app.group().getGroupList();
         int index = before.size() - 1;
-        GroupData group = new GroupData(before.get(index).getId(), "New test group", "New Group header", "New footer 1");
+        GroupData group = new GroupData().withId(before.get(index).getId()).withName("New test group").withHeader("New Group header").withFooter("New footer 1");
         app.group().modify(index, group);
         List<GroupData> after =  app.group().getGroupList();
         Assert.assertEquals(after.size(), before.size());

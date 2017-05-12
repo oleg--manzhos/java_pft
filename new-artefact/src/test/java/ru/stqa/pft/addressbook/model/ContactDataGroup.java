@@ -2,10 +2,10 @@ package ru.stqa.pft.addressbook.model;
 
 public class ContactDataGroup {
     private int id;
-    private final String cName;
-    private final String cMiddleName;
-    private final String cLastName;
-    private final String cNickName;
+    private String cName;
+    private String cMiddleName;
+    private String cLastName;
+    private String cNickName;
 
     public int getId() {
         return id;
@@ -24,7 +24,7 @@ public class ContactDataGroup {
     }
 
     public ContactDataGroup(int id, String cName, String cMiddleName, String cLastName, String cNickName) {
-        this.id = id;
+        this.id = Integer.MAX_VALUE;
         this.cName = cName;
         this.cMiddleName = cMiddleName;
         this.cLastName = cLastName;

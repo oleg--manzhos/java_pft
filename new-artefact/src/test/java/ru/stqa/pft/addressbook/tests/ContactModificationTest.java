@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDataGroup;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -13,22 +14,29 @@ import java.util.List;
  */
 public class ContactModificationTest extends TestBase {
 
-    @Test
-    public void testContactModification(){
+    @BeforeMethod
+    public void setPreconditions(){
+        app.getNavigationHelper().gotoGroupPage();
         if (!app.getContactHelper().isThereAContact()){
             app.getContactHelper().createContact(new ContactDataGroup("#$%%^@#", "#$%$%", "@DC$%", "e23$$#"));
         }
-        List<ContactDataGroup> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() -1);
-        app.getContactHelper().initContactModification();
+    }
+
+    @Test
+    public void testContactModification(){
+
         ContactDataGroup contact = new ContactDataGroup("C1", "L.", "Lewis", "Beater");
+        List<ContactDataGroup> before = app.getContactHelper().getContactList();
+        int index = before.size() - 1;
+        app.getContactHelper().selectContact(index);
+        app.getContactHelper().initContactModification();
         app.getContactHelper().fillContactCreationForm(contact);
         app.getContactHelper().submitContactModificationForm();
         app.getContactHelper().goToHomePage();
         List<ContactDataGroup> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         before.add(contact);
 
         Comparator<? super ContactDataGroup> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());

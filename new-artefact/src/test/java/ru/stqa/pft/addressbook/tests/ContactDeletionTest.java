@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ContactDeletionTest extends TestBase {
 
-    ContactDataGroup contact = new ContactDataGroup("C1", "#$%$%", "@DC$%", "e23$$#");
+    ContactDataGroup contact = new ContactDataGroup().withLastName("C1").withLastName("#$%$%").withMiddleName("@DC$%").withNickName("e23$$#");
 
     @BeforeMethod
     public void setPreconditions(){

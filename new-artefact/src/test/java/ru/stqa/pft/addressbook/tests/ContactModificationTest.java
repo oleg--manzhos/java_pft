@@ -17,14 +17,15 @@ public class ContactModificationTest extends TestBase {
     public void setPreconditions(){
         app.goTo().groupPage();
         if (!app.contact().isThereAContact()){
-            app.contact().create(new ContactDataGroup("#$%%^@#", "#$%$%", "@DC$%", "e23$$#"));
+            app.contact().create(new ContactDataGroup().withLastName("C1").withName("#$%$%").withMiddleName("@DC$%").withNickName("e23$$#"));
         }
     }
 
     @Test
     public void testContactModification(){
 
-        ContactDataGroup contact = new ContactDataGroup("C1", "L.", "Lewis", "Beater");
+        ContactDataGroup contact = new ContactDataGroup().withName("C1").withMiddleName("L.")
+                .withLastName("Lewis").withNickName("Beater");
         List<ContactDataGroup> before = app.contact().getContactList();
         int index = before.size() - 1;
         app.contact().selectContact(index);

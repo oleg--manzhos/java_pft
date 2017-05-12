@@ -1,7 +1,8 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactDataGroup {
-    private int id;
+
+    private int id = Integer.MAX_VALUE;
     private String cName;
     private String cMiddleName;
     private String cLastName;
@@ -13,22 +14,6 @@ public class ContactDataGroup {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public ContactDataGroup(String cName, String cMiddleName, String cLastName, String cNickName) {
-        this.id = 0;
-        this.cName = cName;
-        this.cMiddleName = cMiddleName;
-        this.cLastName = cLastName;
-        this.cNickName = cNickName;
-    }
-
-    public ContactDataGroup(int id, String cName, String cMiddleName, String cLastName, String cNickName) {
-        this.id = Integer.MAX_VALUE;
-        this.cName = cName;
-        this.cMiddleName = cMiddleName;
-        this.cLastName = cLastName;
-        this.cNickName = cNickName;
     }
 
     public String getcName() {
@@ -45,6 +30,31 @@ public class ContactDataGroup {
 
     public String getcNickName() {
         return cNickName;
+    }
+
+    public ContactDataGroup withName(String cName) {
+        this.cName = cName;
+        return this;
+    }
+
+    public ContactDataGroup withMiddleName(String cMiddleName) {
+        this.cMiddleName = cMiddleName;
+        return this;
+    }
+
+    public ContactDataGroup withLastName(String cLastName) {
+        this.cLastName = cLastName;
+        return this;
+    }
+
+    public ContactDataGroup withNickName(String cNickName) {
+        this.cNickName = cNickName;
+        return this;
+    }
+
+    public ContactDataGroup withId (int id){
+        this.id = id;
+        return this;
     }
 
     @Override

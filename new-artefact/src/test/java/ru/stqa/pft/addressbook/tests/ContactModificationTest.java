@@ -23,7 +23,6 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void testContactModification(){
-
         ContactDataGroup contact = new ContactDataGroup().withName("C1").withMiddleName("L.")
                 .withLastName("Lewis").withNickName("Beater");
         List<ContactDataGroup> before = app.contact().getContactList();

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactDataGroup;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,13 @@ public class ContactHelper extends HelperBase {
         homePage();
     }
 
+    public void modify (ContactDataGroup contact){
+        initContactModification();
+        fillContactCreationForm(contact);
+        submitContactModificationForm();
+        homePage();
+    }
+
     public void deleteSelectedContact() {
         click(By.xpath("//input[@value='Delete']"));
     }
@@ -66,13 +74,14 @@ public class ContactHelper extends HelperBase {
         driver.findElements(By.name("selected[]")).get(index).click();
     }
 
-    public List<ContactDataGroup> getContactList() {
-        List<ContactDataGroup> contacts = new ArrayList<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = driver.findElements(By.xpath("//tr[@name='entry']/td[2]"));
         for (WebElement element:elements){
             String name = element.getText();
             int id = Integer.parseInt(driver.findElement(By.cssSelector("input[type=checkbox][value]")).getAttribute("value"));
-            ContactDataGroup contact = new ContactDataGroup(id, "C1", null,null, null);
+            ContactDataGroup contact = new ContactDataGroup()
+                    .withId(id).withName("C1").withLastName(null).withMiddleName(null).withNickName(null);
             contacts.add(contact);
         }
         return contacts;

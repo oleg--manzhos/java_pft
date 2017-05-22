@@ -4,9 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactDataGroup;
+import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by omanzhos on 4/13/2017.
@@ -27,19 +32,15 @@ public class ContactDeletionTest extends TestBase {
     @Test
     public void testContactDeletion(){
 
-        List<ContactDataGroup> before = app.contact().getContactList();
+        Contacts before = app.contact().all();
+        ContactDataGroup deletedGroup = before.iterator().next();
         app.contact().contactSelection();
         app.contact().deleteSelectedContact();
         app.contact().applyContactDeletion();
         app.contact().homePage();
-        List<ContactDataGroup> after = app.contact().getContactList();
+        Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
-        after.add(contact);
-        Comparator<? super ContactDataGroup> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-        before.sort(byId);
-        after.sort(byId);
-        Assert.assertEquals(after, before);
+        assertThat(after, equalTo(before.withoutAdded(deletedGroup)));
     }
 }

@@ -4,13 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.ContactDataGroup;
 import ru.stqa.pft.addressbook.model.Contacts;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by omanzhos on 4/12/2017.
@@ -92,9 +87,9 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
-            String AllPhones = cells.get(5).getText();
+            String allPhones = cells.get(5).getText();
             contacts.add(new ContactData().withId(id).withName("C1").withLastName(null).withMiddleName(null)
-                    .withNickName(null).withAllPhones(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+                    .withNickName(null).withAllPhones(allPhones));
         }
         return contacts;
     }

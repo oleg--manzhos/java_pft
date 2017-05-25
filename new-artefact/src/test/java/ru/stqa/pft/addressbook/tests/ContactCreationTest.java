@@ -1,8 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.ContactDataGroup;
+import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,10 +16,9 @@ public class ContactCreationTest extends TestBase {
 
     @Test
     public void testCreateNewContact() {
-
         Contacts before = app.contact().all();
         app.goTo().contactCreationPage();
-        ContactDataGroup contact = new ContactDataGroup().withLastName("C1").withLastName("C2")
+        ContactData contact = new ContactData().withLastName("C1").withLastName("C2")
                 .withMiddleName("C3").withNickName("C++");
         app.contact().create(contact);
         Contacts after = app.contact().all();

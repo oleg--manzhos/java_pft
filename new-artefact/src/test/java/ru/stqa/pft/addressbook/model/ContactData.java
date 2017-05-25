@@ -1,12 +1,37 @@
 package ru.stqa.pft.addressbook.model;
 
-public class ContactDataGroup {
+public class ContactData {
 
     private int id = Integer.MAX_VALUE;
     private String cName;
     private String cMiddleName;
     private String cLastName;
     private String cNickName;
+    private String homePhone;
+    private String mobilePhone;
+    private String workPhone;
+    private String allPhones;
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
 
     public int getId() {
         return id;
@@ -32,28 +57,43 @@ public class ContactDataGroup {
         return cNickName;
     }
 
-    public ContactDataGroup withName(String cName) {
+    public ContactData withName(String cName) {
         this.cName = cName;
         return this;
     }
 
-    public ContactDataGroup withMiddleName(String cMiddleName) {
+    public ContactData withMiddleName(String cMiddleName) {
         this.cMiddleName = cMiddleName;
         return this;
     }
 
-    public ContactDataGroup withLastName(String cLastName) {
+    public ContactData withLastName(String cLastName) {
         this.cLastName = cLastName;
         return this;
     }
 
-    public ContactDataGroup withNickName(String cNickName) {
+    public ContactData withNickName(String cNickName) {
         this.cNickName = cNickName;
         return this;
     }
 
-    public ContactDataGroup withId (int id){
+    public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
         return this;
     }
 
@@ -62,7 +102,7 @@ public class ContactDataGroup {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ContactDataGroup that = (ContactDataGroup) o;
+        ContactData that = (ContactData) o;
 
         return cName != null ? cName.equals(that.cName) : that.cName == null;
     }
@@ -74,7 +114,7 @@ public class ContactDataGroup {
 
     @Override
     public String toString() {
-        return "ContactDataGroup{" +
+        return "ContactData{" +
                 "id=" + id +
                 ", Name='" + cName + '\'' +
                 '}';
